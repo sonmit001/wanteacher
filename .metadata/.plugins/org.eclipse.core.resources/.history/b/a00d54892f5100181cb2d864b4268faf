@@ -1,0 +1,157 @@
+package kr.or.bit.controller;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import kr.or.bit.service.IndexService;
+
+@Controller
+public class IndexController {
+
+	@Autowired
+	IndexService service;
+	
+	@RequestMapping("login")
+	public String login() {
+		return "index/login";
+	}
+	
+	@RequestMapping("loginok")
+	public String loginok(HttpServletRequest req) {
+		return "index/loginok";
+	}
+	
+	@RequestMapping("findid")
+	private void findid(@RequestParam HashMap<String, String> param, HttpServletResponse res) {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		try {
+			res.getWriter().println(service.findid(param));
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@RequestMapping("loginck")
+	private void logingck(@RequestParam HashMap<String, String> param, HttpServletResponse res) {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		try {
+			res.getWriter().println(service.loginck(param));
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@RequestMapping("idck")
+	private void idck(HttpServletRequest req, HttpServletResponse res) {
+		HashMap<String, String> param = new HashMap<String, String>();
+		param.put("id", req.getParameter("id"));
+		
+		
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		try {
+			res.getWriter().println(service.idck(param));
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+	} 
+	
+/*	view ��
+ 	@RequestMapping("singup")
+	private void singup(@RequestParam HashMap<String, String> param, Model model) {
+		model.addAttribute("result", service.singup(param));
+	
+	return "index/login";
+  
+  
+  */
+	
+	@RequestMapping("singup")
+	private void singup(@RequestParam HashMap<String, String> param, HttpServletResponse res) {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		
+/*		System.out.println(param.entrySet());
+ * 	넘어온 param console에 찍시 syso 같은것
+ * 
+ * */
+		
+		try {
+			res.getWriter().println(service.singup(param));
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("memberlist")
+	private String memberlist( Model model) {
+	/*	List<HashMap<String, String>> list = service.memberlist();
+		model.addAttribute("list", list);*/
+		return "index/memberlist";
+				
+	}
+	
+	@RequestMapping("getmemberlist")
+	private List<HashMap<String, String>> getmemberlist(){
+		//System.out.println(service.memberlist());
+	/*	
+		
+		 
+        //클라이언트로 값 전송을 위해 WrapperVO로 감싸기
+        WrapperVO rtnVO = new WrapperVO();
+        rtnVO.setAaData(userList);
+        
+        //json string으로 parsing
+        String jsonString = JsonUtil.objectToJsonString(rtnVO);
+        
+        return jsonString;*/
+		List<HashMap<String,String>> userList = service.memberlist();
+		//String[] array = arrayList.toArray(new String[arrayList.size()]);
+
+		Object[] array =  userList.toArray();
+		System.out.println("확인");
+		System.out.println(array[0]);
+		System.out.println(array);
+		return service.memberlist();
+	}
+	
+//	@RequestMapping("memberlist")
+//	private void memberlist(@RequestParam(value="pagesize", defaultValue="5") int pagesize, @RequestParam(value="currentpage", defaultValue="1") int currentpage , HttpServletResponse res) {
+///*
+//	1. requestparam hashmap param 으로 받을 때 dafault 값을 view 단에서 처리해야하는건지 아니면 여기서 default 값 설정가능한지
+//	2. 여기서 default 값 설정한다면  단순히 hashmap으로 넘기는게 안되는거 아닌지..
+//
+//*/
+//		res.setCharacterEncoding("UTF-8");
+//		
+//		try {
+//			res.getWriter().println(service.memberlist(pagesize, currentpage));
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		
+//	}
+	
+}

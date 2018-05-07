@@ -1,0 +1,83 @@
+코딩 규칙
+
+1. 패키지 명
+ex)  kr.co.css.Action(kr.co.kr뒤에 붙임)
+
+2. 폴더 명
+ex ) Board - 앞글자 대문자 사용
+
+3. 클래스 명
+ex )　Board_DTO - 분류 되는 단어는 언더바 뒤에 붙임
+
+4. 인터페이스 명
+ex ) Action - 앞글자 대문자 사용
+
+5. JSP 명
+ex ) cssMain.jsp – 첫단어는 소문자 분류 되는 단어는 첫글자 대문자 
+
+6. 함수 명
+ex ) insertMember() - 첫단어는 소문자 , 다음 단어부터는 첫글자 대문자
+
+7. 변수 명
+ex )　page - 전부다 소문자로 사용
+
+8.  상단 주석 처리
+ex ) 
+jsp - 상단 주석
+<%-- 
+   @JSP : cssMain.jsp 
+   @Date : 2017-04-21
+   @Author : 황진국
+   @Desc : 
+--%>
+
+class - 상단 주석
+/*
+  @class : Board_DTO
+   @Date : 2017-04-21
+   @Author : 황진국
+   @Desc : 게시판에 대한 DTO 정의
+*/
+
+class - 상단 주석
+/*
+  @class : Board_DTO
+   @Date : 2017-04-21
+   @Author : 황진국
+   @Desc : 게시판에 대한 DTO 정의
+*/
+
+class - 상단 주석
+/*
+  @class : Board_DTO
+   @Date : 2017-04-21
+   @Author : 황진국
+   @Desc : 게시판에 대한 DTO 정의
+*/
+
+
+
+폴더명
+경로
+예시
+이미지 폴더
+images
+지역,테마 아이콘
+/images/icons
+콘텐츠 사진
+/images/pictures
+/images/pictures/firstimage.jpg
+파일 업로드 폴더
+files
+/files
+/files/firstfiles.txt
+css 폴더
+css
+/css
+/css/firststyle.css
+
+cf) href의 경우 경로 : 전체경로/images/firstjsp.jsp
+
+
+
+

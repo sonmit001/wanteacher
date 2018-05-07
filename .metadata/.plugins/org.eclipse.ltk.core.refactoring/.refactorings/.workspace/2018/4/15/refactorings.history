@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Ex02_Semi&apos; to &apos;Ex02_fileupload&apos;" description="Rename resource &apos;Ex02_Semi&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/Ex02_Semi" name="Ex02_fileupload" stamp="1523709725575" updateReferences="true"/>
+</session>

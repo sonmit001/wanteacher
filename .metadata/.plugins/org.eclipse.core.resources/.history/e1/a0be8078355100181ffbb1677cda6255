@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+ 	<select id="idck" parameterType="hashMap" resultType="int">
+ 		SELECT COUNT(*) FROM MEMBER WHERE ID=#{id} 	
+ 	</select>
+ 	
+ 	<insert id="singup" parameterType="hashMap">
+ 		INSERT INTO MEMBER (MNO,NAME,ID, PW, GENDER,TEL,ZIPCODE,DOROADDR,REGDATE,EMAIL) 
+ 		VALUES(SEQ_ID.NEXTVAL,#{name},#{iddialog},#{pwd}, #{optradio}, #{phone}, #{postCode}, #{roadAddress},SYSDATE,#{email})
+ 	</insert>
+
+ 	<select id="memberlist" parameterType="hashMap" resultType="hashMap">
+ 		select * from member where name = '개구리'
+ 	</select>
+ 	
+ 	<select id="loginck" parameterType="hashMap" resultType="int">
+ 		SELECT COUNT(*) FROM MEMBER WHERE ID=#{id} and 	PW=#{pw}
+ 	</select>
+ 	
+ 	<select id="findid" parameterType="hashMap" resultType="String">
+ 		SELECT ID FROM MEMBER WHERE NAME=#{name} AND EMAIL=#{email}
+ 	</select>
+ 	
+ 	<select id="totalmember" parameterType="hashMap" resultType="int">
+ 		SELECT COUNT(*) FROM MEMBER
+ 	</select>
+</mapper>
