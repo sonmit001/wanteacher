@@ -6,87 +6,68 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/contextmenu/dist/jquery.contextMenu.css">
+
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!--data table -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 
  <!-- contextmenu -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/contextmenu/dist/jquery.contextMenu.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/contextmenu/dist/jquery.contextMenu.css">
 
 <style type="text/css">
 
-.selected{background: #eeeeee}
-
-table{
-    text-align: center;
-}
- 
+	.selected{background: #eeeeee}
+	.center{ text-align: center;};
+	.bold-center{text-align: center; font-weight:bold};
  
 </style>
 </head>
 <body>
 <script type="text/javascript">
-var id = sessionStorage.getItem("id")
+
 	function logout() {
 		sessionStorage.clear();
 		location.href = "login";
 	}
+	
+var table
+
+function makedatatable(){
+	
+	table =  $('#datatable').DataTable({
+     	
+		   select:true, 	
+		   ajax: "getmemberlist",
+		   destroy: true,
+				   
+		   columns: [ {data: "MNO" , className:'bold-center'},
+	           {data: "ID", defaultCotent:""},
+	           {data: "NAME"},
+	           {data: "GENDER"},
+	           {data: "TEL"},
+	           {data: "EMAIL"},
+	           {data: "ZIPCODE"},
+	           {data: "DOROADDR"}]         
+		    }) ;
+		}
 
 	$(document).ready(function(){
+		
+		makedatatable();
+		var id = sessionStorage.getItem("id")
+		console.log(id);
 		$("#session_id").text(id);
-	    $('#datatable').DataTable({
-	     	
-	    	
-	   select:true, 	
-	   serverSide: true,
-	   processing: true,
-	   ajax: {
-		   url: 'getmemberlist',
-		   dataSrc: '',
-		   dataFilter: function(data){
-			   console.log(data);
-			  
-			   return JSON.stringify(data);
-			   
-		   }
-		   /* "dataSrc": "", */
-/* 		   dataFilter: function(data){
-	            var json = jQuery.parseJSON( data );
-	            json.recordsTotal = json.total;
-	            json.recordsFiltered = json.total;
-	            json.data = json.list;
-	 			console.log(json);
-	            return JSON.stringify( json ); // return JSON string
-	        } */
-		    } ,
-		    
-		   columns: [ {data: "MNO"},
-                {data: "ID"},
-                {data: "NAME"},
-                {data: "GENDER"},
-                {data: "TEL"},
-                {data: "EMAIL"},
-                {data: "ZIPCODE"},
-                {data: "DOROADDR"}] /*,
-                 columnDefs: [
-                	                	
-                    { targets: [2,3,4,5,6], visible: true},
-                  
-                ]  */
-		   
-	   
-	    });
-	    
-  
 	    $('#datatable tbody').on( 'click', 'tr', function () {
+	    	
 	        if ( $(this).hasClass('selected') ) {
 	            $(this).removeClass('selected');
 	        }
@@ -95,22 +76,64 @@ var id = sessionStorage.getItem("id")
 	            $(this).addClass('selected');
 	        }
 	    } ); 
-		/*    callback: function(key, options) {
-                var m = "clicked: " + key;
-                window.console && console.log(m) || alert(m); 
-            } */
+
+	    console.log(table);
+	    
 	    $.contextMenu({
             selector: '.selected', 
             callback: function(key, options){
-            	var m = "clicked: " + key + options.$trigger.attr("id");
-               alert(m);
 
+            	//fngetData
+            	
+               console.log(table.row( '.selected' ).data().ID);
+            	var id = table.row( '.selected' ).data().ID;
+            	console.log(key);
+            	if(key=="detail"){
+            		console.log("상세보기")
+            		
+            		$.ajax({
+            			  url: "getmemberlist",
+                          type: "post",
+                          data: { "id" : id },
+                          dataType:'json',
+                          success: function(data){
+                        	  console.log(data);
+                        	  console.log(data.data[0])
+                        	  $.each(data.data,function(index,value){
+									console.log(index + "/" + value);
+									
+									
+									
+									
+									
+									
+									
+								});
+                          }
+            		})
+            		
+            	}else if(key=="delete"){
+            		$.ajax({
+            			  url: "memberdelete",
+                          type: "post",
+                          data: { "id" : id },
+                          success: function(data){
+                        	  console.log(data);
+                        	  
+                        	  if(data==1){
+                        	  $('#datatable').dataTable().fnDestroy();
+                        		  
+                        	  makedatatable();
+                        	  }
+                          }
+            		})
+            	}
             },
             items: {
                 "detail": {name: "상세보기", icon: "edit" 
                 },
                 "cut": {name: "자르기", icon: "cut"},
-               copy: {name: "복사", icon: "copy"},
+               "copy": {name: "복사", icon: "copy"},
                 "paste": {name: "붙여넣기", icon: "paste"},
                 "delete": {name: "삭제", icon: "delete"},
                 "sep1": "---------",
@@ -136,24 +159,7 @@ var id = sessionStorage.getItem("id")
             <h2><b>회원관리</b></h2>
         </div>
         
-        <div class="col-sm-12">
-            <div class="col-sm-3 left">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="ID 검색"
-                        id="id">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                            <i class="glyphicon glyphicon-search" id="search"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-sm-2 right">
-            </div>
-        </div>
  <!-- class="table table-hover table-bordered" -->
-       <!--  <div id="tablediv"> -->
             <table id="datatable" class="table">
             	<thead>
 	                <tr class="info">
@@ -168,41 +174,80 @@ var id = sessionStorage.getItem("id")
 	                    
 	                </tr>
                 </thead>
-                <!-- 데이터가 한건도 없는 경우  -->
-         <%--        <tbody>
-	                <c:forEach var="item" items="${list}" varStatus="status">
-	                	<tr id="${item.ID}">
-		                	<td>${status.count}</td>
-		                	<td>${item.ID}</td>
-		                	<td>${item.NAME}</td>
-		                	<td>${item.GENDER}</td>
-		                	<td>${item.TEL}</td>
-		                	<td>${item.EMAIL}</td>
-		                	<td>${item.ZIPCODE}</td>
-		                	<td>${item.DOROADDR}</td>
-	                	</tr>
-	                </c:forEach>
-                </tbody> --%>
-<%--                 <tr>
-                    <td colspan="9">
-                        <ul class="pagination">
-                            <!--이전 링크 --> 
-                            <c:forEach var="i" begin="1" end="${numberlist}">
-                            	 <c:choose>
-                                            <c:when test="${current_page eq i}">
-                                                <li class="active"><a>${i}</a></li>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <li><a href="memberlist?current_page=${i}">${i}</a></li>
-                                            </c:otherwise>
-                                 </c:choose>
-                            </c:forEach>
-                        </ul>
-                    </td>
-                </tr> --%>
             </table>
         </div>
-        <span class="context-menu-one btn btn-neutral">right click me</span>
-   <!--  </div> -->
+        
+        
+        <div class="modal fade" id="myModal" role="dialog">
+    		<div class="modal-dialog">
+		  	  <!-- Modal content-->
+      			<div class="modal-content">
+	        		<div class="modal-header">
+		         		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		          		<h4 class="modal-title"><b>회원 상세보기</b></h4>
+	        		</div>
+	        	
+		        	<div class="modal-body">
+		        		<table class="table">
+		        			<colgroup>
+		        				<col width="40%">
+		        				<col width="60%">
+		        			</colgroup>
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">가입일 : </td>
+		        				<td><input type="text" id="signdate" name="signdate"   class="form-control"></td>
+		        			</tr>		        			
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">아이디 : </td>
+		        				<td><input type="text" id="iddialog" name="iddialog"   class="form-control"></td>
+		        			</tr>
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">이름 : </td>
+		        				<td><input id="name" name="name" type="text" class="form-control"></td>
+		        			</tr>
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">비밀번호 : </td>
+		        				<td><input id="pwd" type="password" name="pwd" class="form-control" maxlength="10"></td>
+		        			</tr>
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">이메일 : </td>
+		        				<td><input id="email" name="email" type="text" class="form-control"></td>
+		        			</tr>
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">성별:</td>
+		        				<td><label class="radio-inline"><input type="radio" name="optradio" value="M">남</label></td>
+								<td><label class="radio-inline"><input type="radio" name="optradio" value="W">여</label></td>
+		        			</tr>
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">전화 번호</td>
+		        				<td><input type="text" name="phone" id="phone" class="form-control"></td>
+		        				<td></td>
+		        			</tr>
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">우편 번호</td>
+		        				<td><input type="text" id="postCode" name="postCode" class="form-control" readonly></td>
+		        				<td><button type="button" class="btn btn-default btn-sm" onclick="getzipcode()">검색</button></td>
+		        			</tr>
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">도로명 주소</td>
+		        				<td colspan="2"><input type="text" id="roadAddress" name="roadAddress" class="form-control" readonly></td>        		
+		        			</tr>
+		        			<tr>
+		        				<td class="info" style="vertical-align: middle;">상세 주소</td>
+		        				<td colspan="2"><input type="text" id="adressDetail" name="adressDetail" class="form-control"></td>
+		        			</tr>
+		        		</table>
+		        	</div>
+        	<div class="modal-footer">
+        	<!-- type="submit" value="Submit" -->
+        		<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">확인</button>
+        	</div>
+      	</div>
+    </div>
+  </div>
+<%--   ${pageContext.request.requestURL} http://localhost:8070/bit/WEB-INF/views/index/memberlist.jsp
+
+  ${pageContext.request.contextPath}/bit --%>
+  
 </body>
 </html>

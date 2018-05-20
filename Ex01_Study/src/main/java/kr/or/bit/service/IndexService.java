@@ -22,13 +22,6 @@ public class IndexService {
 		return dao.singup(param);
 	}
 
-//	public List memberlist(int pagesize, int currentpage) {
-//		
-//		return dao.memberlist(pagesize, currentpage);
-//	}
-	
-	
-
 	public int loginck(HashMap<String, String> param) {
 		return dao.loginck(param);
 	}
@@ -37,11 +30,16 @@ public class IndexService {
 		return dao.findid(param);
 	}
 
-	public List<HashMap<String,String>> memberlist() {
-		return dao.memberlist();
+	public List<HashMap<String,String>> memberlist(HashMap<String, String> param) {
+		return dao.memberlist(param);
 	}
 
 	public int totalmember(HashMap<String, String> param) {
 		return dao.totalmember(param);
+	}
+
+	public int memberdelete(HashMap<String, String> param) {
+		return dao.memberdelete(param);
+		
 	}
 }

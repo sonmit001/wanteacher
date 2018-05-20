@@ -42,11 +42,11 @@
 		
 		<!-- ojdbc -->
 		<dependency>
-		    <groupId>oracle.jdbc</groupId>
-		    <artifactId>OracleDriver</artifactId>
-		    <version>10.2.0.5</version>
-		    <scope>system</scope>
-		    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc14.jar</systemPath>
+			<groupId>oracle.jdbc</groupId>
+			<artifactId>OracleDriver</artifactId>
+			<version>10.2.0.5</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc14.jar</systemPath>
 		</dependency>
 		
 		<!-- mybatis -->

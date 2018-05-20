@@ -10,11 +10,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.bit.service.IndexService;
 import net.sf.json.JSONArray;
@@ -87,16 +90,15 @@ public class IndexController {
   
   */
 	
+	@RequestMapping("jstree")
+	public String jstree(HttpServletRequest req) {
+		return "index/jstree";
+	}
+	
 	@RequestMapping("singup")
 	private void singup(@RequestParam HashMap<String, String> param, HttpServletResponse res) {
 		
 		res.setCharacterEncoding("UTF-8");
-		
-		
-/*		System.out.println(param.entrySet());
- * 	넘어온 param console에 찍시 syso 같은것
- * 
- * */
 		
 		try {
 			res.getWriter().println(service.singup(param));
@@ -107,39 +109,46 @@ public class IndexController {
 	
 	@RequestMapping("memberlist")
 	private String memberlist( Model model) {
-	/*	List<HashMap<String, String>> list = service.memberlist();
+	/*	List<HashMap<String, String>> list = service.memberlist();s
 		model.addAttribute("list", list);*/
 		return "index/memberlist";
 				
 	}
 	
-	@RequestMapping("getmemberlist")
-	private JSONArray getmemberlist(){
+	@RequestMapping("memberdelete")
+	private void memberdelete(@RequestParam HashMap<String, String> param ,HttpServletResponse res) {
 		
-		List<HashMap<String,String>> userList = service.memberlist();
-		JSONArray jsonlist = JSONArray.fromObject(userList);
-
-		System.out.println("확인");
-		System.out.println(jsonlist);
-		return jsonlist;
+		try {
+			res.getWriter().println(service.memberdelete(param));
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+		
 	}
 	
-//	@RequestMapping("memberlist")
-//	private void memberlist(@RequestParam(value="pagesize", defaultValue="5") int pagesize, @RequestParam(value="currentpage", defaultValue="1") int currentpage , HttpServletResponse res) {
-///*
-//	1. requestparam hashmap param 으로 받을 때 dafault 값을 view 단에서 처리해야하는건지 아니면 여기서 default 값 설정가능한지
-//	2. 여기서 default 값 설정한다면  단순히 hashmap으로 넘기는게 안되는거 아닌지..
-//
-//*/
-//		res.setCharacterEncoding("UTF-8");
-//		
-//		try {
-//			res.getWriter().println(service.memberlist(pagesize, currentpage));
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		
-//	}
+	@RequestMapping("getmemberlist")
+	private void getmemberlist(@RequestParam HashMap<String, String> param ,HttpServletResponse res){		
+		res.setCharacterEncoding("UTF-8");
+	
+	JSONArray jsonArray = new JSONArray();
+	JSONObject jsonObject = new JSONObject();
+	
+	List<HashMap<String, String>> list = service.memberlist(param);
+	System.out.println("아래 param");
+	System.out.println(param.entrySet());
+	
+	for(int i=0; i<list.size(); i++)
+		jsonArray.add(list.get(i));
+	
+	try {
+		res.getWriter().println(jsonObject.put("data", jsonArray));
+	} catch (JSONException jsonException) {
+		jsonException.printStackTrace();
+	} catch (IOException ioExceiption) {			
+		ioExceiption.printStackTrace();
+	}
+		
+	}
+	
 	
 }

@@ -19,17 +19,13 @@ public class IndexDao {
 	
 	public int singup(HashMap<String, String> param) {
 		
-		
 		return sqlSessionTemplate.insert("memberMapper.singup", param);
 	}
 	
-	public List<HashMap<String,String>> memberlist() {
-		return sqlSessionTemplate.selectList("memberMapper.memberlist");
-/*
-	페이징 처리 하기 위한 파라미터 값들 어떻게 보내야하나
-*/
+	public List<HashMap<String,String>> memberlist(HashMap<String, String> param) {
+		return sqlSessionTemplate.selectList("memberMapper.memberlist", param);
 	}
-
+	
 	public int loginck(HashMap<String, String> param) {
 		return sqlSessionTemplate.selectOne("memberMapper.loginck",param);
 	}
@@ -40,6 +36,10 @@ public class IndexDao {
 
 	public int totalmember(HashMap<String, String> param) {
 		return sqlSessionTemplate.selectOne("memberMapper.totalmember",param);
+	}
+
+	public int memberdelete(HashMap<String, String> param) {
+		return sqlSessionTemplate.delete("memberMapper.memberdelete",param);
 	}
 
 	
