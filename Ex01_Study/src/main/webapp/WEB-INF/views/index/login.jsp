@@ -47,6 +47,14 @@
 <script type="text/javascript">
 
 	$(function () {
+		
+		
+		$('#join').on("click",function(){
+			$('#form')[0].reset();
+			
+			$('#myModal').modal();
+			
+		});
 		//var result = "${result}"; //"" , "1", "0"
 		var idck=1;
 		
@@ -245,7 +253,7 @@ function loginck() {
 						</colgroup>
 							<tr class="active">
 								<td>
-									<button type="button" class="btn btn-success btn-sm" style="width:100%" data-toggle="modal" data-target="#myModal"> 
+									<button id="join" type="button" class="btn btn-success btn-sm" style="width:100%" > 
 									<span class="glyphicon glyphicon-plus"></span> 회원가입</button>
 								</td>
 								<td>
@@ -273,8 +281,9 @@ function loginck() {
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title"><b>아이디 찾기</b></h4>
 				</div>
-				
+					
 					<div class="modal-body">
+					
 						<table class="table">
 							<colgroup>
 								<col width="30%">
@@ -310,6 +319,7 @@ function loginck() {
 	        	</div>
 	        	
 		        	<div class="modal-body">
+		        	<form id="form">
 		        		<table class="table">
 		        			<colgroup>
 		        				<col width="30%">
@@ -361,6 +371,7 @@ function loginck() {
 		        				<td colspan="2"><input type="text" id="adressDetail" name="adressDetail" class="form-control"></td>
 		        			</tr>
 		        		</table>
+		        		</form>
 		        	</div>
         	<div class="modal-footer">
         	<!-- type="submit" value="Submit" -->

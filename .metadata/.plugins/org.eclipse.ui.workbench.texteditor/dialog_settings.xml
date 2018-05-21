@@ -2,12 +2,19 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="sumbit" key="selection"/>
+		<item value="contextMenu.js" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="contextMenu.js"/>
+			<item value="session_id"/>
+			<item value="방가"/>
+			<item value="framework"/>
+			<item value="slf"/>
+			<item value="sf"/>
+			<item value="bold-center"/>
 			<item value="sumbit"/>
 			<item value="location"/>
 			<item value="optradio"/>
@@ -16,13 +23,6 @@
 			<item value="alert"/>
 			<item value="email"/>
 			<item value="loginck"/>
-			<item value="login"/>
-			<item value="pw"/>
-			<item value="name"/>
-			<item value="service"/>
-			<item value="singupbtn"/>
-			<item value="idcheckdialog"/>
-			<item value="[0]"/>
 		</list>
 		<list key="replacehistory">
 			<item value="system"/>

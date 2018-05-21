@@ -13,7 +13,12 @@
  	</insert>
 
  	<select id="memberlist" parameterType="hashMap" resultType="hashMap">
- 		select MNO, iD, NAME , GENDER, TEL , EMAIL , ZIPCODE , DOROADDR from member where id = 'test04'
+ 		select * from member   
+ 		<if test="id != null">
+ 			<where>
+        		id = #{id} 
+        	</where> 
+        </if>
  	</select>
  	
  	<select id="loginck" parameterType="hashMap" resultType="int">
@@ -27,4 +32,8 @@
  	<select id="totalmember" parameterType="hashMap" resultType="int">
  		SELECT COUNT(*) FROM MEMBER
  	</select>
+ 	
+ 	<delete id="memberdelete">
+ 		delete from member where id = #{id}
+ 	</delete>
 </mapper>

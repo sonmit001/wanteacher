@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="treeMapper">
+	<select id="getCategoryList" resultType="hashMap">
+		SELECT ID, PARENT_ID, TEXT, 
+		            CASE WHEN PARENT_ID = '#' THEN 'fa fa-cog'
+		                     WHEN LENGTH(PARENT_ID)=2 THEN 'fa fa-asterisk'
+		                     ELSE 'fa fa-caret-right'
+		              END ICON 
+		  FROM CATEGORY
+		 START WITH PARENT_ID = '#'
+		 CONNECT BY PRIOR ID = PARENT_ID			
+	</select>
+</mapper>
