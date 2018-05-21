@@ -9,6 +9,6 @@
 		              END ICON 
 		  FROM CATEGORY
 		 START WITH PARENT_ID = '#'
-		 CONNECT BY PRIOR ID = PARENT_ID			
-	</select>
+		 CONNECT BY PRIOR ID = PARENT_ID
+	</select>	 
 </mapper>
