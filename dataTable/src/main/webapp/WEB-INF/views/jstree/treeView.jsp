@@ -33,15 +33,18 @@
 				url : "getCategoryList",
 				type:"POST",
 				dataType:"json",
-				success : function(data){				
+				success : function(data){	
+					console.log(data);
 					$("#jstree_container").jstree({						
 						"core": {
 							'data' : data,
 							'themes':{
 								'name' : 'proton',
 								'responsive' : true
-							}
-						}
+							},
+							"check_callback" : true
+						},
+						"plugins" : [ "dnd","contextmenu" ]
 					})	
 					.bind("loaded.jstree", function (event, data) {
 							
