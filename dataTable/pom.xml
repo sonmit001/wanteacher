@@ -42,11 +42,11 @@
 		
 		<!-- ojdbc -->
 		<dependency>
-			<groupId>oracle.jdbc</groupId>
-			<artifactId>OracleDriver</artifactId>
-			<version>10.2.0.5</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc14.jar</systemPath>
+		    <groupId>oracle.jdbc</groupId>
+		    <artifactId>OracleDriver</artifactId>
+		    <version>10.2.0.5</version>
+		    <scope>system</scope>
+		    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc14.jar</systemPath>
 		</dependency>
 		
 		<!-- mybatis -->
@@ -76,7 +76,18 @@
 		    <version>1.4</version>
 		</dependency>
 		
-				
+		<!-- 최소 JDK 1.6 이상 -->
+		<dependency>
+			<groupId>org.lazyluke</groupId>
+		    <artifactId>log4jdbc-remix</artifactId>
+		    <version>0.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+						
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -182,8 +193,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>

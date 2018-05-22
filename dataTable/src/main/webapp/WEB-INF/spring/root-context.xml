@@ -15,13 +15,22 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 데이터베이스 연결 --> 
-	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+	<bean id="dataSourceSpied" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
         <property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" />
-        <property value="jdbc:oracle:thin:@localhost:1521:XE"
-            name="url" />
+        <property value="jdbc:oracle:thin:@localhost:1521:XE" name="url" />
         <property value="study" name="username" />
         <property value="1234" name="password" />
     </bean>
+	
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpied" />
+	    <property name="logFormatter">
+	    	<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+	        	<property name="loggingType" value="MULTI_LINE" />	        	
+	            <property name="sqlPrefix" value="SQL >>  "/>
+	        </bean>
+	 	</property>
+	 </bean>
 	
 	<!-- SqlSession --> 
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory">
