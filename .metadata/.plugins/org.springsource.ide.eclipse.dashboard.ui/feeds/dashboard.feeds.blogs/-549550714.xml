@@ -5,7 +5,26 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-05-17T11:15:00Z</updated>
+  <updated>2018-05-22T00:05:57Z</updated>
+  <entry>
+    <title>Enjoy quality time with the Spring and Reactor communities at SpringOne Platform</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/05/22/enjoy-quality-time-with-the-spring-and-reactor-communities-at-springone-platform" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Stephane Maldini</name>
+    </author>
+    <id>tag:spring.io,2018-05-21:3284</id>
+    <updated>2018-05-22T00:05:57Z</updated>
+    <content type="html">&lt;p&gt;Hey there,&lt;/p&gt;
+&lt;p&gt;It feels like &lt;a href="https://springoneplatform.io/?utm_source=pivotal-email&amp;utm_medium=email-link&amp;utm_campaign=s1p-maldini-2018"&gt;SpringOne Platform&lt;/a&gt; was only yesterday, and I&amp;rsquo;m so excited by what&amp;rsquo;s coming in September! It¡¯s yet another excuse to chat, exchange, share, have a drink, and enjoy quality time with the Spring and Reactor communities, contributors and users alike. &lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll tell you a secret: as the project Reactor lead, this is one of my favorite places to capture amazing feedback and translate it into pull requests. I like spending hours replaying the software history with folks, talking about efficient distributed systems (or &amp;ldquo;microservices&amp;rdquo;) because&amp;ndash;Bingo! Reactive is all about these stories!&lt;/p&gt;
+&lt;p&gt;But I don&amp;rsquo;t think networking alone justifies attending a conference. We reserve our most impactful revelations for the audience, what we have been working on, what our next priorities will be, and when to use our libraries.&lt;/p&gt;
+&lt;p&gt;Nevertheless, Reactive programming is a major theme for Spring Boot 2 and Spring Framework 5, yet we are far from the only ones in the space. So what&amp;rsquo;s different about our Reactive story at Pivotal? My priority is to deliver sessions that help you answer this very question and offer a way for you to: &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Learn more about the Spring Reactive value proposition&lt;/strong&gt;. Do you need a refresher on what Reactive programming is? Do you want to be decisive about knowing when to use Reactive programming and Reactive systems?&lt;br/&gt;&lt;strong&gt;Position yourself as a subject matter expert&lt;/strong&gt;. We&amp;rsquo;ll be hosting architecture discussions, execution model analysis, and deep-dive explorations for typical Reactive scenarios, from &lt;strong&gt;IoT&lt;/strong&gt; to &lt;strong&gt;microservices orchestration&lt;/strong&gt; to &lt;strong&gt;mobile backends&lt;/strong&gt;.&lt;br/&gt;&lt;strong&gt;Be part of the open-source adventure&lt;/strong&gt;. Meet the team and help us define the next priorities, as well as discuss your needs, experience, pain, and wins. We want to have &lt;strong&gt;an inclusive Reactive story&lt;/strong&gt; where you are the hero.&lt;br/&gt;&lt;strong&gt;Know your options&lt;/strong&gt;. The Spring and Reactor teams are establishing a full vertical slice of features to support Reactive programming. There isn&amp;rsquo;t an enterprise integration issue we want to exclude from our radar, from data extraction to message passing. Get current with our reactive ecosystem.&lt;br/&gt;&lt;strong&gt;Take a front row seat for exclusive announcements&lt;/strong&gt;. The Reactive effort is multiplying at Pivotal, so take a front row seat for exclusive announcements! At the end of the day, we&amp;rsquo;re not here to surf the Reactive hype. We have some pretty interesting R&amp;amp;D collaboration going on and we want you to be the first to learn about it.&lt;/p&gt;
+&lt;p&gt;Considering attending? Yup, you definitely should! The content, the contributing teams, the open-source love?it&amp;rsquo;s all about the feedback loop we establish between you and us.&lt;/p&gt;
+&lt;p&gt;The Reactor team and I hope to see you there!&lt;/p&gt;
+&lt;p&gt;P.S. Feel free to use the code &lt;strong&gt;S1P200_SMaldini&lt;/strong&gt; to save an extra $200 when you &lt;a href="https://2018.event.springoneplatform.io/register?utm_source=pivotal-email&amp;utm_medium=email-link&amp;utm_campaign=s1p-maldini-2018"&gt;register&lt;/a&gt; for SpringOne Platform.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Spring Data Lovelace M3 released</title>
     <link rel="alternate" href="https://spring.io/blog/2018/05/17/spring-data-lovelace-m3-released" />
@@ -826,19 +845,5 @@ dependencies {
   &lt;li&gt;Spring Data Elasticsearch 3.0.7 - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-elasticsearch/3.0.7.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/elasticsearch/docs/3.0.7.RELEASE/api"&gt;JavaDocs&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/elasticsearch/docs/3.0.7.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/elasticsearch/docs/3.0.7.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Spring Data Couchbase 3.0.7 - &lt;a href="https://repo.spring.io/libs-release/org/springframework/data/spring-data-couchbase/3.0.7.RELEASE"&gt;Artifacts&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/couchbase/docs/3.0.7.RELEASE/api"&gt;JavaDocs&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/couchbase/docs/3.0.7.RELEASE/reference/html"&gt;Documentation&lt;/a&gt; - &lt;a href="http://docs.spring.io/spring-data/couchbase/docs/3.0.7.RELEASE/changelog.txt"&gt;Changelog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Framework 4.3.17 and 5.0.6 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/05/08/spring-framework-4-3-17-and-5-0-6-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>St?phane Nicoll</name>
-    </author>
-    <id>tag:spring.io,2018-05-08:3264</id>
-    <updated>2018-05-08T10:47:00Z</updated>
-    <content type="html">&lt;p&gt;It is my pleasure to announce that Spring Framework &lt;code&gt;4.3.17&lt;/code&gt; and &lt;code&gt;5.0.6&lt;/code&gt; have been released and are available now from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework%22"&gt;Maven Central&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;Spring Framework 4.3.17 includes &lt;a href="https://jira.spring.io/secure/ReleaseNote.jspa?projectId=10000&amp;version=16751"&gt;15 fixes and a selection of improvements&lt;/a&gt;. Spring Framework 5.0.6 contains &lt;a href="https://jira.spring.io/secure/ReleaseNote.jspa?projectId=10000&amp;version=16720"&gt;over 40 fixes and improvements&lt;/a&gt;. Those maintenance releases will be used for the upcoming Spring Boot &lt;code&gt;1.5.13&lt;/code&gt; and &lt;code&gt;2.0.2&lt;/code&gt; releases coming up later this week.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2018-05-09 Update:&lt;/strong&gt; The releases address a vulnerability. Please see &lt;a href="https://spring.io/blog/2018/05/09/spring-project-vulnerability-reports-published"&gt;this blog post&lt;/a&gt; published after the associated Spring Boot &lt;a href="https://spring.io/blog/2018/05/09/spring-boot-2-0-2"&gt;2.0.2&lt;/a&gt; and &lt;a href="https://spring.io/blog/2018/05/09/spring-boot-1-5-13"&gt;1.5.13&lt;/a&gt; releases.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-framework/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework"&gt;GitHub&lt;/a&gt; | &lt;a href="https://jira.spring.io/browse/SPR"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-framework/docs/5.0.6.RELEASE/spring-framework-reference"&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
