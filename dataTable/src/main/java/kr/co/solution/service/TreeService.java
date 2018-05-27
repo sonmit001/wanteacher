@@ -17,4 +17,8 @@ public class TreeService {
 	public List<HashMap<String, String>> getCategoryList() {		
 		return dao.getCategoryList();
 	}
+
+	public int updateNodeText(HashMap<String, String> param) {
+		return dao.updateNodeText(param);
+	}
 }

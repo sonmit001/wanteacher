@@ -3,12 +3,18 @@
 <mapper namespace="treeMapper">
 	<select id="getCategoryList" resultType="hashMap">
 		SELECT ID, PARENT_ID, TEXT, 
-		            CASE WHEN PARENT_ID = '#' THEN 'fa fa-cog'
-		                     WHEN LENGTH(PARENT_ID)=2 THEN 'fa fa-asterisk'
-		                     ELSE 'fa fa-caret-right'
-		              END ICON 
+		            CASE WHEN HREF IS NULL OR HREF = '' THEN 'fa fa-folder'		                    
+		                 ELSE 'fa fa-link'
+		             END ICON ,
+		             HREF
 		  FROM CATEGORY
 		 START WITH PARENT_ID = '#'
 		 CONNECT BY PRIOR ID = PARENT_ID
-	</select>	 
+	</select>	
+	
+	<update id="updateNodeText" parameterType="hashMap">
+		UPDATE CATEGORY SET
+		       TEXT = #{text}
+		 WHERE ID = #{id}
+	</update> 
 </mapper>

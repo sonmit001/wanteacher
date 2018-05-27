@@ -15,5 +15,9 @@ public class TreeDao {
 
 	public List<HashMap<String, String>> getCategoryList() {		
 		return sqlSessionTemplate.selectList("treeMapper.getCategoryList");
+	}
+
+	public int updateNodeText(HashMap<String, String> param) {
+		return sqlSessionTemplate.update("treeMapper.updateNodeText", param);
 	}		
 }

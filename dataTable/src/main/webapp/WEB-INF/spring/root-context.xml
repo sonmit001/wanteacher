@@ -18,8 +18,8 @@
 	<bean id="dataSourceSpied" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
         <property value="oracle.jdbc.driver.OracleDriver" name="driverClassName" />
         <property value="jdbc:oracle:thin:@localhost:1521:XE" name="url" />
-        <property name="username" value="study"/>
-		<property name="password" value="1234"/>
+        <property name="username" value="springuser"/>
+		<property name="password" value="1004"/>
     </bean>
 	
 	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
