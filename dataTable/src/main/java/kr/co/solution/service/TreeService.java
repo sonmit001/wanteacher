@@ -14,7 +14,7 @@ public class TreeService {
 	@Autowired
 	TreeDao dao;
 
-	public List<HashMap<String, String>> getCategoryList() {		
+	public List<HashMap<String, Object>> getCategoryList() {		
 		return dao.getCategoryList();
 	}
 

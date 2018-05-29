@@ -13,7 +13,7 @@ public class TreeDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public List<HashMap<String, String>> getCategoryList() {		
+	public List<HashMap<String, Object>> getCategoryList() {		
 		return sqlSessionTemplate.selectList("treeMapper.getCategoryList");
 	}
 
