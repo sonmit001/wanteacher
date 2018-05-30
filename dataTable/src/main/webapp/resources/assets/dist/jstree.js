@@ -648,10 +648,10 @@
 									$(e.currentTarget).trigger(e);
 								}
 								break;
-							case 13: // enter
+					/*		case 13: // enter
 								e.type = "click";
 								$(e.currentTarget).trigger(e);
-								break;
+								break;*/
 							case 37: // left
 								e.preventDefault();
 								if(this.is_open(e.currentTarget)) {

@@ -2,18 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="treeMapper">
 	<select id="getCategoryList" resultType="hashMap">
-		SELECT ID, PARENT_ID, TEXT,
-				    CASE WHEN PARENT_ID = 0 THEN 'fa fa-folder'
-				             ELSE 'fa fa-external-link'
-				     END ICON,
-				     HREF,
-				     SHARING
-		   FROM	 CATEGORY
-	</select>	
+		SELECT ID, PARENT_ID, TEXT, 
+		            CASE WHEN PARENT_ID = 0 THEN 'fa fa-cog'
+		                     WHEN LENGTH(PARENT_ID)=2 THEN 'fa fa-asterisk'
+		                     ELSE 'fa fa-caret-right'
+		              END ICON ,
+		              HREF
+		  FROM CATEGORY2
+	
+	</select>	 
+	
+	<insert id="linkAdd" parameterType="hashMap" >
+		INSERT INTO CATEGORY2 (ID, PARENT_ID, TEXT, HREF,SHARING)  VALUES(seq.nextval,#{parent},#{title},#{url},#{sharing})
+	</insert>
 	
 	<update id="updateNodeText" parameterType="hashMap">
-		UPDATE CATEGORY SET
+		UPDATE CATEGORY2 SET
 		       TEXT = #{text}
 		 WHERE ID = #{id}
 	</update> 
+	
+	<select id="getmaxid" resultType="int">
+		SELECT MAX(ID) FROM CATEGORY2
+	</select>
+	
+	<insert id="folderAdd">
+		INSERT INTO CATEGORY2 (ID, PARENT_ID, TEXT, SHARING) VALUES(seq.nextval, #{parent},#{title},#{sharing})
+	</insert>
+	
 </mapper>

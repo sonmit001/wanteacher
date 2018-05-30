@@ -13,12 +13,30 @@ public class TreeService {
 	
 	@Autowired
 	TreeDao dao;
+	
+	public int getmaxid() {
+		return dao.getmaxid();
+	};
 
-	public List<HashMap<String, Object>> getCategoryList() {		
+	public List<HashMap<String, String>> getCategoryList() {		
 		return dao.getCategoryList();
+	}
+
+	public int linkAdd(HashMap<String, String> param) {
+		return dao.linkAdd(param);
+		
 	}
 
 	public int updateNodeText(HashMap<String, String> param) {
 		return dao.updateNodeText(param);
+	}
+
+	public int folderAdd(HashMap<String, String> param) {
+		return dao.folderAdd(param);
+		
+	}
+
+	public int deleteNode(HashMap<String, String> param) {
+		return dao.deleteNode(param);
 	}
 }

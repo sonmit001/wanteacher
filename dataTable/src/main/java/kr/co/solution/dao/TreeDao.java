@@ -13,11 +13,28 @@ public class TreeDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public List<HashMap<String, Object>> getCategoryList() {		
+	public List<HashMap<String, String>> getCategoryList() {		
 		return sqlSessionTemplate.selectList("treeMapper.getCategoryList");
+	}
+
+	public int linkAdd(HashMap<String, String> param) {
+		return  sqlSessionTemplate.insert("treeMapper.linkAdd",param);
 	}
 
 	public int updateNodeText(HashMap<String, String> param) {
 		return sqlSessionTemplate.update("treeMapper.updateNodeText", param);
-	}		
+	}
+
+	public int getmaxid() {
+		return sqlSessionTemplate.selectOne("treeMapper.getmaxid");
+	}
+
+	public int folderAdd(HashMap<String, String> param) {
+		return sqlSessionTemplate.insert("treeMapper.folderAdd",param);
+	}
+
+	public int deleteNode(HashMap<String, String> param) {
+		return sqlSessionTemplate.delete("treeMapper.deleteNode",param);
+	}	
+	
 }
