@@ -44,7 +44,7 @@
 		<dependency>
 		    <groupId>oracle.jdbc</groupId>
 		    <artifactId>OracleDriver</artifactId>
-		    <version>10.2.0.5</version>
+		    <version>11g</version>
 		    <scope>system</scope>
 		    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
 		</dependency>

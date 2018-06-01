@@ -18,7 +18,7 @@ public class TreeService {
 		return dao.getmaxid();
 	};
 
-	public List<HashMap<String, String>> getCategoryList() {		
+	public List<HashMap<String, Object>> getCategoryList() {		
 		return dao.getCategoryList();
 	}
 
@@ -38,5 +38,9 @@ public class TreeService {
 
 	public int deleteNode(HashMap<String, String> param) {
 		return dao.deleteNode(param);
+	}
+
+	public int insertRootFolder() {		
+		return dao.insertRootFolder();
 	}
 }

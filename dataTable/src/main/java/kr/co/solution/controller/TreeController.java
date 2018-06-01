@@ -30,8 +30,6 @@ public class TreeController {
 	@RequestMapping("linkAdd")
 	public void linkAdd(HttpServletResponse res , @RequestParam HashMap<String, String> param) {
 		res.setCharacterEncoding("UTF-8");
-
-		System.out.println(param);
 		service.linkAdd(param);
 		
 		int id = service.getmaxid();
@@ -40,10 +38,7 @@ public class TreeController {
 		} catch (JSONException | IOException e) {			
 			e.printStackTrace();
 		}
-		
 	}
-	
-//	/folderAdd
 	
 	@RequestMapping("folderAdd")
 	public void folderAdd(HttpServletResponse res , @RequestParam HashMap<String, String> param) {
@@ -57,10 +52,8 @@ public class TreeController {
 			res.getWriter().println(id);
 		} catch (JSONException | IOException e) {			
 			e.printStackTrace();
-		}
-		
+		}		
 	}
-	
 	
 	@RequestMapping("getCategoryList")
 	public void getCategoryList(HttpServletResponse res) {
@@ -68,38 +61,49 @@ public class TreeController {
 		
 		JSONArray jsonArray = new JSONArray();	
 		
-		List<HashMap<String, String>> list = service.getCategoryList();
+		List<HashMap<String, Object>> list = service.getCategoryList();
 		
-		for(int i=0; i<list.size(); i++) {
-			
+		if(list.size() == 0) { //데이터 없을 시
 			JSONObject jsonObject = new JSONObject();
-
-			String parentid = String.valueOf(list.get(i).get("PARENT_ID"));
-			if(parentid.equals("0") ) {
-				jsonObject.put("parent", "#");
-			}else {
-				jsonObject.put("parent", list.get(i).get("PARENT_ID"));
-			}
 			
-			String href =  list.get(i).get("HREF");
-			HashMap<String,String> test = new HashMap<>();
-			test.put("href", href);
+			int result = service.insertRootFolder(); 
 			
-			jsonObject.put("id", list.get(i).get("ID"));
-			jsonObject.put("text", list.get(i).get("TEXT"));
-			jsonObject.put("icon", list.get(i).get("ICON"));
-			jsonObject.put("a_attr", test);
-			System.out.println(test);
-			jsonArray.put(jsonObject);
+			if(result == 1) {
+				jsonObject.put("id", "1");
+				jsonObject.put("parent", "#");				
+				jsonObject.put("text", "ROOT");
+				jsonObject.put("icon", "");
+				jsonObject.put("href", "");
+				jsonObject.put("sharing", "");
+				
+				jsonArray.put(jsonObject);
+			}			
+		}else {
+			for(int i=0; i<list.size(); i++) {			
+				JSONObject jsonObject = new JSONObject();
+				
+				jsonObject.put("id", list.get(i).get("ID"));
+				
+				if(list.get(i).get("PARENT_ID").toString().equals("0")) 
+					jsonObject.put("parent", "#");
+				else 
+					jsonObject.put("parent", list.get(i).get("PARENT_ID").toString());
+				
+				jsonObject.put("text", list.get(i).get("TEXT").toString());
+				jsonObject.put("icon", list.get(i).get("ICON") == null ? "" : list.get(i).get("ICON").toString());
+				jsonObject.put("href", list.get(i).get("HREF") == null ? "" : list.get(i).get("HREF").toString());
+				jsonObject.put("sharing", list.get(i).get("SHARING") == null ? "" : list.get(i).get("SHARING"));
+		
+				jsonArray.put(jsonObject);
+			}		
 		}
+		
 		try {
 			res.getWriter().println(jsonArray);
 		} catch (JSONException | IOException e) {			
 			e.printStackTrace();
 		}
 	}
-	
-	//deleteNode\
 	
 	@RequestMapping("deleteNode")
 	public void deleteNode(@RequestParam HashMap<String, String> param, HttpServletResponse res) {		
@@ -122,8 +126,4 @@ public class TreeController {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
 }

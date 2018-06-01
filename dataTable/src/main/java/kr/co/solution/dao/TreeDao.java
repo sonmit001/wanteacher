@@ -13,7 +13,7 @@ public class TreeDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public List<HashMap<String, String>> getCategoryList() {		
+	public List<HashMap<String, Object>> getCategoryList() {		
 		return sqlSessionTemplate.selectList("treeMapper.getCategoryList");
 	}
 
@@ -35,6 +35,9 @@ public class TreeDao {
 
 	public int deleteNode(HashMap<String, String> param) {
 		return sqlSessionTemplate.delete("treeMapper.deleteNode",param);
-	}	
-	
+	}
+
+	public int insertRootFolder() {		
+		return sqlSessionTemplate.insert("treeMapper.insertRootFolder");
+	}		
 }
